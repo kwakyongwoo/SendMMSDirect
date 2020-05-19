@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="java.util.Date" />
+
+        <variable
+            name="pref"
+            type="com.dyddyd.sendmms.repository.sharedpreference.MMSPreferenceManager.Companion" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:subtitle="@{pref.phoneNum}"
+                app:title="@{pref.name}" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="current date"
+                android:textColor="@color/black50" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_camera"
+                    android:tint="@color/blueblue" />
+
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/square"
+                    android:backgroundTint="@color/dark_blue"
+                    android:layout_marginTop="16dp"
+                    android:rotation="270"/>
+
+                <LinearLayout
+                    android:id="@+id/cardCamera"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="56dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/dark_blue"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="카메라"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="사진 찍어 보내기"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/camera"
+                            android:textColor="@color/white" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_gallery"
+                    android:tint="@color/blue" />
+
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/square"
+                    android:backgroundTint="@color/blue"
+                    android:layout_marginTop="16dp"
+                    android:rotation="90"/>
+
+                <LinearLayout
+                    android:id="@+id/cardGallery"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="56dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/blue"
+                        android:orientation="vertical"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="갤러리"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="갤러리에서 가져오기"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/gallery"
+                            android:textColor="@color/white"
+                            android:textDirection="ltr" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <EditText
+                android:id="@+id/content"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/border_midblue_white"
+                android:hint="@string/no_content"
+                android:padding="16dp"
+                android:text="@={pref.content}"
+                android:textSize="16sp" />
+
+            <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="match_parent">-->
+
+            <!--                <ImageView-->
+            <!--                    android:id="@+id/send"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="match_parent"-->
+            <!--                    android:layout_marginHorizontal="16dp"-->
+            <!--                    android:background="@drawable/border_midblue_white"-->
+            <!--                    android:backgroundTint="@color/mid_blue"-->
+            <!--                    android:padding="8dp"-->
+            <!--                    android:src="@drawable/ic_arrow_forward"-->
+            <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                    app:layout_constraintDimensionRatio="1:1"-->
+            <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                    app:layout_constraintStart_toStartOf="parent"-->
+            <!--                    app:layout_constraintTop_toTopOf="parent" />-->
+
+            <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
+
+<!--    <?xml version="1.0" encoding="utf-8"?>-->
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+
+<!--<data>-->
+
+<!--    <import type="java.util.Date" />-->
+
+<!--    <variable-->
+<!--        name="pref"-->
+<!--        type="com.dyddyd.sendmms.repository.sharedpreference.MMSPreferenceManager.Companion" />-->
+<!--</data>-->
+
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@color/white"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <androidx.appcompat.widget.Toolbar-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@color/white"-->
+<!--            app:subtitle="@{pref.phoneNum}"-->
+<!--            app:title="@{pref.name}" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:textSize="12sp"-->
+<!--            android:text="current date"-->
+<!--            android:textColor="@color/black50" />-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/camera"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/ic_camera"-->
+<!--                android:tint="@color/blueblue" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:paddingHorizontal="8dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="카메라"-->
+<!--                    android:textSize="12sp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_darkblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="사진 찍어 보내기"-->
+<!--                    android:textColor="@color/white" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_darkblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text='카메라 아이콘을 클릭해서 사진을 촬영하고\n "확인" 버튼을 클릭합니다'-->
+<!--                    android:textColor="@color/white" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_darkblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="촬영된 사진이 아래의 문자 내용과 함께\n지정된 번호로 전송됩니다"-->
+<!--                    android:textColor="@color/white" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layoutDirection="rtl"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="16dp">-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/galleryZ"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:src="@drawable/ic_gallery"-->
+<!--                android:tint="#4fc3f7" />-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layoutDirection="rtl"-->
+<!--                android:paddingHorizontal="8dp"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <TextView-->
+<!--                    android:gravity="right"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="갤러리"-->
+<!--                    android:textSize="12sp" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_lightblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="갤러리에서 선택"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_lightblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="갤러리 아이콘을 클릭해서 사진을 선택합니다"-->
+<!--                    android:textColor="@color/black" />-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@drawable/message_lightblue"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:layout_marginTop="4dp"-->
+<!--                    android:text="선택된 사진이 아래의 문자 내용과 함께\n지정된 번호로 전송됩니다."-->
+<!--                    android:textColor="@color/black" />-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/test"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="16dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/content"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="16dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@drawable/border_midblue_white"-->
+<!--            android:hint="@string/no_content"-->
+<!--            android:padding="16dp"-->
+<!--            android:text="@{pref.content != null ? pref.content : null}"-->
+<!--            android:textSize="14sp" />-->
+<!--        -->
+<!--    </LinearLayout>-->
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--</layout>-->

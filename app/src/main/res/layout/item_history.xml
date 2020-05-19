@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.net.Uri"/>
+        <import type="android.view.View"/>
+        <variable
+            name="item"
+            type="com.dyddyd.sendmms.repository.data.History" />
+    </data>
+
+    <com.dyddyd.sendmms.SquareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_margin="1dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_iv_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/item_tv_date"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            app:imgSrc="@{item.uriString}"
+            android:adjustViewBounds="true"/>
+
+    </com.dyddyd.sendmms.SquareLayout>
+</layout>
