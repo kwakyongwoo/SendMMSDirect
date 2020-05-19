@@ -17,11 +17,15 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:background="@color/white"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="-16dp">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -37,137 +41,145 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
                 android:text="current date"
+                android:textSize="12sp"
                 android:textColor="@color/black50" />
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_camera"
-                    android:tint="@color/blueblue" />
-
-                <RelativeLayout
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/square"
-                    android:backgroundTint="@color/dark_blue"
-                    android:rotation="270" />
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/cardCamera"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="56dp"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/dark_blue"
-                        android:orientation="vertical"
+                        android:orientation="horizontal"
                         android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="카메라"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                        <ImageView
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_camera"
+                            android:tint="@color/blueblue" />
+
+                        <RelativeLayout
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginTop="16dp"
-                            android:text="사진 찍어 보내기"
-                            android:textColor="@color/white" />
+                            android:background="@drawable/square"
+                            android:backgroundTint="@color/dark_blue"
+                            android:rotation="270" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/cardCamera"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/camera"
-                            android:textColor="@color/white" />
+                            android:layout_marginEnd="56dp"
+                            android:orientation="vertical">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/dark_blue"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="카메라"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:text="사진 찍어 보내기"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:text="@string/camera"
+                                    android:textColor="@color/white" />
+
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_gallery"
-                    android:tint="@color/blue" />
-
-                <RelativeLayout
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/square"
-                    android:backgroundTint="@color/blue"
-                    android:rotation="90" />
-
-                <LinearLayout
-                    android:id="@+id/cardGallery"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="56dp"
-                    android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/blue"
-                        android:orientation="vertical"
+                        android:layoutDirection="rtl"
+                        android:orientation="horizontal"
                         android:padding="16dp">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="갤러리"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="8dp"
+                            android:src="@drawable/ic_gallery"
+                            android:tint="@color/blue" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <RelativeLayout
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
                             android:layout_marginTop="16dp"
-                            android:text="갤러리에서 가져오기"
-                            android:textColor="@color/white" />
+                            android:background="@drawable/square"
+                            android:backgroundTint="@color/blue"
+                            android:rotation="90" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/cardGallery"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:text="@string/gallery"
-                            android:textColor="@color/white"
-                            android:textDirection="ltr" />
+                            android:layout_marginEnd="56dp"
+                            android:orientation="vertical">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:background="@color/blue"
+                                android:orientation="vertical"
+                                android:padding="16dp">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="갤러리"
+                                    android:textColor="@color/white"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:text="갤러리에서 가져오기"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:text="@string/gallery"
+                                    android:textColor="@color/white"
+                                    android:textDirection="ltr" />
+
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+            </ScrollView>
 
-            <ImageView
-                android:id="@+id/test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -184,7 +196,8 @@
             android:padding="16dp"
             android:text="@={pref.content}"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
