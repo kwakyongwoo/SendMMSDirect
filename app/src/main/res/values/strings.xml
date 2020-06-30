@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">바로 사진 전송</string>
     <string name="no_content">내용 없음</string>
-    <string name="camera">촬영 후 \"확인\" 버튼을 누르면 아래의 문자 내용과 촬영한 사진이 지정된 번호로 전송됩니다.</string>
-    <string name="gallery">갤러리에서 이미지를 선택하면 아래의 문자 내용과 선택한 사진이 지정된 번호로 전송됩니다.</string>
+    <string name="camera">촬영 후 \"확인\" 버튼을 누르면 문자 내용과 촬영한 사진이 전송됩니다.</string>
+    <string name="gallery">갤러리에서 이미지를 선택하면 문자 내용과 선택한 사진이 전송됩니다.</string>
     <string name="no_data">정보없음</string>
 
 </resources>

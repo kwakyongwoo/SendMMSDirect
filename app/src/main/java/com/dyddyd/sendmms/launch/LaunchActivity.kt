@@ -30,14 +30,6 @@ import java.util.*
 
 class LaunchActivity : AppCompatActivity() {
 
-    private val PERMISSION_REQUEST_CODE = 1000
-    private val PERMISSIONS = arrayOf(
-        android.Manifest.permission.CAMERA,
-        android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-        android.Manifest.permission.SEND_SMS,
-        android.Manifest.permission.READ_SMS,
-        android.Manifest.permission.READ_EXTERNAL_STORAGE
-    )
     private val CONTACT_INTENT_CODE = 2000
     private var doubleBackToExitPressedOnce = false
 
@@ -65,108 +57,44 @@ class LaunchActivity : AppCompatActivity() {
         }
 
         MMSPreferenceManager.setInstance(this)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!hasPermission(PERMISSIONS)) {
-                requestPermissions(PERMISSIONS, PERMISSION_REQUEST_CODE)
-            } else {
-                if (MMSPreferenceManager.phoneNum == null) {
-                    binding.apply {
-                        phoneNum.apply {
-                            inputType = InputType.TYPE_CLASS_PHONE
-                            addTextChangedListener(PhoneNumberFormattingTextWatcher())
-                            filters = arrayOf(InputFilter.LengthFilter(13))
-                        }
-
-                        confirmButton.setOnClickListener {
-                            if(name.text.trim().isEmpty()) name.error = "필수 입력란입니다."
-                            else name.error = null
-
-                            if(phoneNum.text.trim().length != 13) phoneNum.error = "필수 입력란입니다."
-                            else phoneNum.error = null
-
-                            if(name.text.trim().isNotEmpty() && phoneNum.text.trim().length == 13) {
-                                MMSPreferenceManager.name = name.text.trim().toString()
-                                MMSPreferenceManager.phoneNum = phoneNum.text.trim().toString()
-                                if(content.text.trim().isNotEmpty()) MMSPreferenceManager.content = content.text.trim().toString()
-
-                                val intent = Intent(this@LaunchActivity, MainActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                        }
-
-                        contactButton.setOnClickListener {
-                            val intent = Intent(Intent.ACTION_PICK)
-                            intent.data = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
-                            startActivityForResult(intent, CONTACT_INTENT_CODE)
-                        }
-                    }
-                } else {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+        if (MMSPreferenceManager.phoneNum == null) {
+            binding.apply {
+                phoneNum.apply {
+                    inputType = InputType.TYPE_CLASS_PHONE
+                    addTextChangedListener(PhoneNumberFormattingTextWatcher())
+                    filters = arrayOf(InputFilter.LengthFilter(13))
                 }
-            }
-        }
-    }
 
-    private fun hasPermission(permissions: Array<String>): Boolean {
-        for (permission in permissions) {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    permission
-                ) == PackageManager.PERMISSION_DENIED
-            )
-                return false
-        }
+                confirmButton.setOnClickListener {
+                    if (name.text.trim().isEmpty()) name.error = "필수 입력란입니다."
+                    else name.error = null
 
-        return true
-    }
+                    if (phoneNum.text.trim().length != 13) phoneNum.error = "필수 입력란입니다."
+                    else phoneNum.error = null
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+                    if (name.text.trim().isNotEmpty() && phoneNum.text.trim().length == 13) {
+                        MMSPreferenceManager.name = name.text.trim().toString()
+                        MMSPreferenceManager.phoneNum = phoneNum.text.trim().toString()
+                        if (content.text.trim().isNotEmpty()) MMSPreferenceManager.content =
+                            content.text.trim().toString()
 
-        when (requestCode) {
-            PERMISSION_REQUEST_CODE -> {
-                if (grantResults.isNotEmpty()) {
-                    var accepted = true
-
-                    for (result in grantResults) {
-                        if (result == PackageManager.PERMISSION_DENIED) accepted = false
-                    }
-
-                    if (!accepted) {
-                        showDialogForPermission("앱을 실행하려면 퍼미션을 허가하셔야합니다.")
-                    } else {
-                        if (MMSPreferenceManager.phoneNum == null) {
-                            val intent = Intent(this, LaunchActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        } else {
-                            val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
+                        val intent = Intent(this@LaunchActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
                     }
                 }
-            }
-        }
-    }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private fun showDialogForPermission(msg: String) {
-        val builder = MaterialAlertDialogBuilder(this, R.style.MyAlertDialogStyle)
-        builder.setTitle("알림")
-        builder.setMessage(msg)
-        builder.setCancelable(false)
-        builder.setPositiveButton("예") { dialog, which ->
-            requestPermissions(PERMISSIONS, PERMISSION_REQUEST_CODE)
+                contactButton.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_PICK)
+                    intent.data = ContactsContract.CommonDataKinds.Phone.CONTENT_URI
+                    startActivityForResult(intent, CONTACT_INTENT_CODE)
+                }
+            }
+        } else {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
-        builder.create().show()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -183,7 +111,12 @@ class LaunchActivity : AppCompatActivity() {
             )
             cursor?.apply {
                 moveToFirst()
-                binding.phoneNum.setText(PhoneNumberUtils.formatNumber(cursor.getString(1), Locale.getDefault().country))
+                binding.phoneNum.setText(
+                    PhoneNumberUtils.formatNumber(
+                        cursor.getString(1),
+                        Locale.getDefault().country
+                    )
+                )
                 binding.name.setText(cursor.getString(0))
                 close()
             }
